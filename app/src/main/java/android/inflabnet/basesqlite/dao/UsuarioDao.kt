@@ -1,10 +1,7 @@
 package android.inflabnet.basesqlite.dao
 
 import android.inflabnet.basesqlite.model.Usuario
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface UsuarioDao {
@@ -20,4 +17,17 @@ interface UsuarioDao {
 
     @Update
     fun update (usuario: Usuario)
+
+    @Update
+    fun updateMany (vararg usuario: Usuario)
+
+    @Delete
+    fun delete (usuario:Usuario)
+
+    @Query("Select * from Usuarios")
+    fun all(): Array<Usuario>
+
+    @Query("Select * from Usuarios where id = :identificador")
+    fun show(identificador: Int): Array<Usuario>
+
 }
